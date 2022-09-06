@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Category>
+
+    <div class="container-fluid">
+       <div class="row py-2">
+            <div class="col-6">Category list</div>
+        <div class="col-6 text-end">
+            <a class="btn btn-outline-warning" asp-controller="Category" asp-action="Create">
+                <i class="bi bi-plus-circle-fill"></i>Create
+            </a>
+        </div>
+       </div>
+    
+    @*<partial name="AlertView"/>*@
+
+<table class="table table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Create Date</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th scope="row">@item.Id</th>
+                <td>@item.Name</td>
+                <td>@item.CreatedDateTime.Date</td>
+                <td>
+                    <a class="btn btn-outline-warning mr-2" asp-action="Edit" asp-route-id="@item.Id">
+                        <i class="bi bi-pencil-square"></i>
+                    </a>
+                    <a class="btn btn-outline-warning mx-1" asp-action="Delete" asp-route-id="@item.Id"
+                    onclick="return confirm('Confirm delete')">
+                        <i class="bi bi-trash-fill"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+</div>
